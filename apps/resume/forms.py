@@ -1,6 +1,15 @@
 from django import forms
 
-from models import ResumeItem
+from models import Resume, ResumeItem
+
+
+class ResumeForm(forms.ModelForm):
+    """
+    A form for creating and editing resume.
+    """
+    class Meta:
+        model = Resume
+        fields = ['title']
 
 
 class ResumeItemForm(forms.ModelForm):
