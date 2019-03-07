@@ -1,0 +1,66 @@
+{% extends "base_logged_in.html" %}
+
+{% comment %}
+Template for viewing the list of resumes.
+{% endcomment %}
+
+{% block styles %}
+  {{ block.super }}
+
+  <style>
+    div.resume-container {
+      margin: 24px auto 0;
+      max-width: 800px;
+    }
+
+    section.resume-item {
+      margin-top: 36px;
+      position: relative;
+    }
+
+    section.resume-item > a.btn {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    div.resume-container > a.btn {
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+
+    a.down {
+        margin-top: 20px;
+    }
+
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="container content-section resume-container">
+      <section class="resume-item">
+          <table class="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th><h1>Resumes</h1></th>
+                <th><h1>Items</h1></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for resume in resume_list %}
+              <tr>
+                <th scope="row"></th>
+                <td><h3>{{ resume.title }}</h3></td>
+                <td><h3>{{ resume.resume_count }}</h3></td>
+                <td><a class="btn btn-primary down" href="/resumes/{{ resume.id }}/">Edit</a></td>
+                <td><a class="btn btn-primary down" href="/resumes/{{ resume.id }}/change_name/">Change Name</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+
+          </table>
+      </section>
+      <a class="btn btn-success" href="/resumes/create/">Add New Resume</a>
+  </div>
+{% endblock %}
